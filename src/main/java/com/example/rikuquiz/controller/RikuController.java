@@ -19,8 +19,8 @@ public class RikuController {
 
     @GetMapping()
     private String index(Model model){
-        List<Riku> rikus= rikuService.findAll();
-        model.addAttribute("rikus",rikus);
+        List<Riku> riku= rikuService.findAll();
+        model.addAttribute("riku",riku);
         return "riku/index";
     }
 
@@ -36,17 +36,16 @@ public class RikuController {
         return "riku/edit";
     }
 
-    @GetMapping("{id}")
-    public String show(@PathVariable Long id, Model model){
-        Riku riku = rikuService.findOne(id);
-        model.addAttribute("riku", riku);
+    @GetMapping("show")
+    public String show(Model model){
+
         return"riku/show";
     }
 
     @PostMapping
     public String create(@ModelAttribute Riku riku){
         rikuService.save(riku);
-        return "redirect:/riku";
+        return "riku/rikuquiz";
     }
 
     @GetMapping("{id}/happy")
